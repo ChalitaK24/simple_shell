@@ -19,7 +19,7 @@ int main(void)
 	{
 		printf("s_shell0$ ");
 
-		nread = getline(in_line, &ln, stdin);
+		nread = getline(&in_line, &ln, stdin);
 
 		if (nread == -1)
 		{
