@@ -2,14 +2,15 @@
 
 /**
  * execve_cmd - function to execute inout commpant from string
- *
- * Return: 0 success
+ * @in_line: ponter to input string
+ * Return: void
  *
  */
 
 void execve_cmd(char *in_line)
 {
 	char *argv[2];
+
 	argv[0] = in_line;
 	argv[1] = NULL;
 

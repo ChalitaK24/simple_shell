@@ -2,14 +2,16 @@
 
 /**
  * read_input - function to receive input commands
- *
- * Return: void
+ * @in_line: pointer to buffer storing the input string
+ * @len: pointer to size of the buffer
+ * Return: readcm
  */
 
 ssize_t read_input(char **in_line, size_t *len)
 {
 	ssize_t readcm;
 	size_t i;
+
 	readcm = getline(in_line, len, stdin);
 
 	if (readcm == -1)
