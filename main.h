@@ -7,8 +7,13 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <limits.h>
 
+char **ls_input(char *in_line);
 void execve_cmd(char *in_line);
-ssize_t read_input(char **in_line, size_t *len);
+char *find_path(char *command);
+char *read_input(void);
 
 #endif
