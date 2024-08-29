@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - simple shell program to receive and execute commands
+ * main - is simple shell program to receive and execute commands
  *
  * Return: 0
  */
