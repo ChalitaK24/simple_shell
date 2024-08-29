@@ -11,9 +11,13 @@
 #include <errno.h>
 #include <limits.h>
 
-char **ls_input(char *in_line);
-void execve_cmd(char *in_line);
-char *find_path(char *command);
+#define INIT_ARGS 10
+
+char *find_command_in_path(char *command);
+char **parse_input(char *line);
+void fork_and_execute(char *command_path, char **argv);
+void execute_command(char *line);
 char *read_input(void);
+
 
 #endif

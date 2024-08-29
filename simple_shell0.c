@@ -9,55 +9,31 @@
 
 int main(void)
 {
-	char *in_line;
-	pid_t ch_pid;
-	char **argv;
-	char *cmd_path;
-	
+	char *line;
+
 	while (1)
 	{
-		argv = ls_input(in_line);
-		cmd_path = find_path(argv[0]);
-		
-		printf("s_shell0$ ");
-
-		in_line = read_input();
-		
-					
-		if (argv[0] == NULL)
+		if (isatty(STDIN_FILENO))
 		{
-			free(argv);
+			printf("s_shell$ ");
 		}
-
-			
-		if (cmd_path == NULL)
+		line = read_input();
+		if (line == NULL)
 		{
-			fprintf(stderr, "cmd not found: %s\n", argv[0]);
-			free(argv);
+			if (isatty(STDIN_FILENO))
+			{
+				printf("\n");
+			}
+			break;
 		}
-
-		ch_pid = fork();
-
-		if (ch_pid == -1)
+		if (strncmp(line, "PATH=", 5) == 0)
 		{
-			perror("Error: fork");
-			return (1);
+			setenv("PATH", line + 5, 1);
+			free(line);
+			continue;
 		}
-		else if (ch_pid == 0)
-		{
-			execve(cmd_path, argv, NULL);
-        	        perror("execve Error: ");
-                	free(argv);
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			wait(NULL);
-		}
-	
-		free(argv);
-		free(in_line);	
+		execute_command(line);
+		free(line);
 	}
-	free(in_line);
 	return (0);
 }

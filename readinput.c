@@ -2,34 +2,20 @@
 
 /**
  * read_input - function to receive input commands
- * @in_line: pointer to buffer storing the input string
+ * @line: pointer to buffer storing the input string
  * @len: pointer to size of the buffer
- * Return: readcm
+ * Return: line
  */
 
 char *read_input(void)
 {
-	char *in_line = NULL;
-	size_t len = 0 ;
-	ssize_t readcm;
-	size_t i;
+	char *line = NULL;
+	size_t len = 0;
 
-	readcm = getline(&in_line,&len, stdin);
-
-	if (readcm == -1)
+	if (getline(&line, &len, stdin) == -1)
 	{
-
-			printf("\n");
-			free(in_line);
-			exit(EXIT_SUCCESS);
+		free(line);
+		return (NULL);
 	}
-	
-	i = strcspn(in_line, "\n");
-
-	if (i < strlen(in_line))
-	{
-		in_line[i] = '\0';
-	}
-
-	return (in_line);
+	return (line);
 }

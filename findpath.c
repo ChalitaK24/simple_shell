@@ -1,40 +1,42 @@
 #include "main.h"
 
 /**
- * find_inpath - takes in single arguemnt command and looks for it in PATH
+ * find_command_in_path - takes in single arguemnt command and looks for it in PATH
  *
  * Return: fnd_path
  */
 
-char *find_path(char *command)
+char *find_command_in_path(char *command)
 {
-	char *path_cmd = getenv("PATH");
-	char *path_cpy = strdup(path_cmd);
-	char *cmd_nm = strtok(path_cpy, ":");
-	char *fnd_path = NULL;
-	
-	while (cmd_nm != NULL)
+	char *path = getenv("PATH");
+	char *path_dup = strdup(path);
+	char *dir = strtok(path_dup, ":");
+	char *full_path = NULL;
+
+	if (path == NULL || *path == '\0')
 	{
-		fnd_path = malloc(strlen(cmd_nm) + strlen(command) +2);
-		if (fnd_path == NULL)
+		return (NULL);
+	}
+
+	while (dir != NULL)
+	{
+		full_path = malloc(PATH_MAX);
+
+		if(!full_path)
 		{
-			fprintf(stderr, "Error: Memory allocation failed for full path.\n");
-			free(path_cpy);
+			perror("malloc");
+			free(path_dup);
 			return (NULL);
 		}
-
-		snprintf(fnd_path, strlen(cmd_nm) + strlen(command) + 2, "%s/%s", cmd_nm, command);
-
-	
-		if (access(fnd_path, X_OK) == 0) 
+		snprintf(full_path, PATH_MAX, "%s/%s", dir, command);
+		if (access(full_path, X_OK) == 0)
 		{
-			free(path_cpy);
-			return (fnd_path);
+			free(path_dup);
+			return (full_path);
 		}
-		free(fnd_path);
-		cmd_nm = strtok(NULL, ":");
+		free(full_path);
+		dir = strtok(NULL, ":");
 	}
-	fprintf(stderr, "Error: Command '%s' not found in PATH.\n", command);
-	free(path_cpy);
+	free(path_dup);
 	return (NULL);
 }

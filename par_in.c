@@ -2,33 +2,43 @@
 
 
 /**
- * execve_cmd - function to execute inout commpant from string
+ * parse_input - function to execute inout commpant from string
  * @in_line: ponter to input string
  * Return: void
  *
  */
-char **ls_input(char *in_line)
+
+char **parse_input(char *line)
 {
-	int arg_size = 1;
+	int max_args = INIT_ARGS;
 	int i = 0;
-	char **argv;
+	char **argv = malloc(max_args * sizeof(char *));
+	char *token;
 
-	argv = malloc(arg_size * sizeof(char *));
-	
-	argv[i] = strtok(in_line, " ");
-
-	while (argv[i] != NULL)
+	if (argv == NULL)
 	{
-		i++;
-		if (i >= arg_size)
-		{
-			arg_size = arg_size * 2;
-			argv = realloc(argv, arg_size * sizeof(char *));
-		}
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
 
-		argv[i] = strtok(NULL, " ");
+	token = strtok(line, " \n");
+
+	while (token != NULL)
+	{
+		argv[i] = token;
+		i++;
+		if (i >= max_args)
+		{
+			 max_args *= 2;
+			 argv = realloc(argv, max_args * sizeof(char *));
+			 if (argv == NULL)
+			 {
+				 perror("realloc");
+				 exit(EXIT_FAILURE);
+			 }
+		}
+		token = strtok(NULL, "\n");
 	}
 	argv[i] = NULL;
-
 	return (argv);
 }
