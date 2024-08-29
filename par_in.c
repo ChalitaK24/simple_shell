@@ -2,7 +2,7 @@
 
 
 /**
- * parse_input - function to execute inout commpant from string
+ * parse_input - function to execute input command from string
  * @line: ponter to input string
  *
  * Return: void
