@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * fork_and_execute - child process to execute command
+ * fork_and_execute - a child process to execute command
  * @command_path:  path to the command to be executed
  * @argv: array of strings representing the command-line arguments
  *
