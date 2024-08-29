@@ -1,3 +1,3 @@
 # File handling in c group project
 
-## Simple shell
+## Simple shell project
