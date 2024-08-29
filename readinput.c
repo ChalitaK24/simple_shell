@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * read_input - function to receive input commands
+ * read_input - is function to receive input commands
  *
  * Return: line
  */
