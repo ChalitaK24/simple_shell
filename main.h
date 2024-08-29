@@ -18,6 +18,6 @@ char **parse_input(char *line);
 void fork_and_execute(char *command_path, char **argv);
 void execute_command(char *line);
 char *read_input(void);
-
+void handle_exit(char **argv, char *line);
 
 #endif
