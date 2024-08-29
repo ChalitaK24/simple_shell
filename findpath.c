@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * find_command_in_path - takes in single arguemnt command
+ * find_command_in_path - takes in a single arguemnt command
  * and looks for it in PATH
  * @command: pointer to command line string
  *
