@@ -2,8 +2,7 @@
 
 /**
  * read_input - function to receive input commands
- * @line: pointer to buffer storing the input string
- * @len: pointer to size of the buffer
+ *
  * Return: line
  */
 

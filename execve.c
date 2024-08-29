@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- * execute_command -  function to handle overall execution process of a command including in child process
- *
+ * execute_command -  function to handle overall execution
+ * process of a command including in child process
+ * @line: pointer to an input string
  * Return: void
  */
 
@@ -10,6 +11,7 @@ void execute_command(char *line)
 {
 	char **argv;
 	char *command_path;
+
 	argv = parse_input(line);
 
 	if (argv[0] == NULL)
@@ -26,9 +28,9 @@ void execute_command(char *line)
 		command_path = argv[0];
 		if (access(command_path, X_OK) != 0)
 		{
-			 fprintf(stderr, "Command not found: %s\n", argv[0]);
-			 free(argv);
-			 return;
+			fprintf(stderr, "Command not found: %s\n", argv[0]);
+			free(argv);
+			return;
 		}
 	}
 	else

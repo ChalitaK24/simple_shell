@@ -3,9 +3,9 @@
 
 /**
  * parse_input - function to execute inout commpant from string
- * @in_line: ponter to input string
- * Return: void
+ * @line: ponter to input string
  *
+ * Return: void
  */
 
 char **parse_input(char *line)
@@ -29,13 +29,13 @@ char **parse_input(char *line)
 		i++;
 		if (i >= max_args)
 		{
-			 max_args *= 2;
-			 argv = realloc(argv, max_args * sizeof(char *));
-			 if (argv == NULL)
-			 {
-				 perror("realloc");
-				 exit(EXIT_FAILURE);
-			 }
+			max_args *= 2;
+			argv = realloc(argv, max_args * sizeof(char *));
+			if (argv == NULL)
+			{
+				perror("realloc");
+				exit(EXIT_FAILURE);
+			}
 		}
 		token = strtok(NULL, "\n");
 	}

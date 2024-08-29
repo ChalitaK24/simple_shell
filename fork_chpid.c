@@ -2,7 +2,8 @@
 
 /**
  * fork_and_execute - child process to execute command
- *
+ * @command_path:  path to the command to be executed
+ * @argv: array of strings representing the command-line arguments
  *
  * Return: void
  */
@@ -11,7 +12,7 @@ void fork_and_execute(char *command_path, char **argv)
 {
 	pid_t pid = fork();
 
-	if(pid == -1)
+	if (pid == -1)
 	{
 		perror("fork");
 		exit(EXIT_FAILURE);
@@ -25,6 +26,7 @@ void fork_and_execute(char *command_path, char **argv)
 	else
 	{
 		int status;
+
 		waitpid(pid, &status, 0);
 	}
 }

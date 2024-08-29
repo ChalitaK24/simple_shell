@@ -2,7 +2,8 @@
 
 /**
  * handle_exit - Implements the exit built-in with an optional status code
- *
+ * @argv: array of command line argument stings
+ * @line: input line
  * Return: void
  */
 

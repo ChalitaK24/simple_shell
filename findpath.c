@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- * find_command_in_path - takes in single arguemnt command and looks for it in PATH
- *
+ * find_command_in_path - takes in single arguemnt command
+ * and looks for it in PATH
+ * @command: pointer to command line string
  * Return: fnd_path
  */
 
@@ -22,7 +23,7 @@ char *find_command_in_path(char *command)
 	{
 		full_path = malloc(PATH_MAX);
 
-		if(!full_path)
+		if (!full_path)
 		{
 			perror("malloc");
 			free(path_dup);
